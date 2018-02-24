@@ -1,0 +1,74 @@
+doctype html
+html
+  head
+    title URL Shrtnr
+    script(defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js" )
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+  body
+    section
+      .column
+      .container
+      section.hero.is-info.is-bold
+        .hero-body
+          .container
+            h1.title URL Shrtnr
+            p.subtitle U link it, we 
+              em shrink 
+              |it
+      
+      section
+        .column
+        .column.is-8.is-offset-2
+          article.message.is-primary
+            .message-header
+              p It must be cold...it's time for some shrinkage
+            .message-body
+              
+              .field.has-addons
+                .control
+                  span.select.req-type
+                    select
+                      option http://
+                      option https://
+                p.control.has-icons-left.has-icons-right.is-expanded
+                  input.input.url-input(type="url" placeholder="URL")
+                  span.icon.is-small.is-left
+                    i.fas.fa-upload
+                  span.icon.is-small.is-right.is-hidden
+                    i.fas.fa-check(color="green")
+              .control
+                .button.is-info.shorten-button
+                  |submit
+                  
+      section.result-section.is-hidden
+        .column
+        .column.is-8.is-offset-2
+          article.message
+            .message-header
+              p It's sooo small!
+            .message-body
+              
+              .field.has-addons
+                p.control.is-expanded
+                  input.input.result-text(type="url" placeholder="URL" id="result-text")
+                p.control
+                  a.button.copy-button(data-clipboard-target="#result-text") 
+                    span.icon.is-small
+                      i.fas.fa-copy
+      
+      section.error-section.is-hidden
+        .column.is-8.is-offset-2
+          .notification.is-danger
+            button.delete.delete-error-button
+            |The submitted url was invalid. No shortening link has been provided. 
+            |Please try again with a valid URL  
+            
+      section
+        .notification.has-text-centered.is-small.is-light
+          p.is-size-4
+            a(href="/api") Read the API
+
+  script(src="/public/index-scripts.js")

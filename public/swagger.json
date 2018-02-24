@@ -1,0 +1,118 @@
+{
+  "tags": [
+    {
+      "name": "Encode",
+      "description": "Encode a new short URL"
+    },
+    {
+      "name": "Decode",
+      "description": "Redirect to an original URL via the provided short link"
+    }
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "operationId": "encode",
+        "summary": "Request a new short URL based on the long URL supplied in the query parameters",
+        "tags": [
+          "Encode"
+        ],
+        "responses": {
+          "200": {
+            "description": "An empty JSON object if the requested Long URL was invalid, or a Filled in JSON object if a short URL link has been created.",
+            "schema": {
+              "x-oad-type": "object",
+              "type": "object",
+              "title": "Short URL Response",
+              "properties": {
+                "shortURL": {
+                  "x-oad-type": "string",
+                  "type": "string",
+                  "title": "The short URL created",
+                  "description": "The Shourt URL that was created based on the long URL that was posted. Use this url to be redirected to the original long URL"
+                },
+                "longURL": {
+                  "x-oad-type": "string",
+                  "type": "string",
+                  "title": "The original long URL",
+                  "description": "The long URL that was posted for shortening"
+                }
+              }
+            },
+            "x-oad-type": "response"
+          }
+        },
+        "parameters": [
+          {
+            "name": "longURL",
+            "in": "query",
+            "description": "The long URL to be shortened",
+            "required": true,
+            "type": "string",
+            "x-oad-type": "parameter"
+          }
+        ]
+      }
+    },
+    "/{shortID}": {
+      "get": {
+        "operationId": "decode",
+        "summary": "Decode a short url",
+        "description": "Decode a supplied short URL ID and redirect to the original long URL",
+        "tags": [
+          "Decode"
+        ],
+        "responses": {
+          "201": {
+            "description": "shortID Not Found",
+            "schema": {
+              "x-oad-type": "object",
+              "type": "object",
+              "title": "Empty Object",
+              "description": "An empty JSON object will be returned if an invalid shortID is requested"
+            },
+            "x-oad-type": "response"
+          },
+          "302": {
+            "description": "Redirect",
+            "schema": {
+              "x-oad-type": "text/html",
+              "type": "string",
+              "title": "Redirect",
+              "description": "The server will supply a 302 redirect to the original long URL"
+            },
+            "x-oad-type": "response"
+          }
+        },
+        "parameters": [
+          {
+            "name": "shortID",
+            "in": "path",
+            "description": "A hexadecimal encoded ID number for the short URL",
+            "required": true,
+            "type": "string",
+            "x-oad-type": "parameter"
+          }
+        ]
+      },
+      "x-oad-type": "operation"
+    }
+  },
+  "info": {
+    "title": "URL Shrtnr",
+    "version": "1.0.0",
+    "description": "A simple URL shortening service",
+    "contact": {
+      "name": "Adam Kingsbury"
+    }
+  },
+  "host": "tulip-switch.glitch.me",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "swagger": "2.0"
+}
