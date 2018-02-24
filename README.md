@@ -1,2 +1,2 @@
 # url-shortener
-freecodecamp project - a URL shorter microservice
+freecodecamp project - a URL shortener microservice

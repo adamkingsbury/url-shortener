@@ -1,0 +1,21 @@
+{
+  "name": "fcc-learn-npm-package-json",
+  "dependencies": {
+    "express": "^4.14.0",
+    "flat-file-db": "^1.0.0",
+    "pug": "^2.0.0-rc.4",
+    "swagger-ui-dist": "^3.10.0",
+    "valid-url": "^1.0.9"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "4.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://idontknow/todo.git"
+  }
+}
